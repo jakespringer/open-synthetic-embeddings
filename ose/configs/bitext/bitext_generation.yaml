@@ -19,7 +19,7 @@ schema_config:
   extra_args: null
   extra_args_p: null
 
-n_samples: 100
+n_samples: 10000
 output_path: "output/bitext_samples.jsonl"
 seed: 42
 overwrite_output: false

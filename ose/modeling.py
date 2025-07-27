@@ -250,7 +250,7 @@ class RayEmbeddingModel:
             self.model = AutoModel.from_pretrained(self.model_path).cuda().eval()
             self.tokenizer = AutoTokenizer.from_pretrained(self.model_path)
         encoded_inputs = self.tokenizer(
-            list(batch['text']),
+            [t.encode('utf-8', 'replace').decode('utf-8') for t in batch['text']],
             padding=True,
             truncation=True,
             max_length=self.max_length,

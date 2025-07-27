@@ -20,7 +20,7 @@ schema_config:
     task: "output/short_short_brainstorm_ideas_collected.json"
   extra_args_p: null
 
-n_samples: 100
+n_samples: 10000
 output_path: "output/short_short_samples.jsonl"
 seed: 42
 overwrite_output: false 
