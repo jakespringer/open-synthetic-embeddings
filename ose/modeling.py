@@ -305,7 +305,7 @@ class HFEmbeddingModel(EmbeddingModel):
             all_ids.extend(batch['id'])
         
         embeddings = torch.from_numpy(np.concatenate(all_embeddings, axis=0))
-        ids = torch.from_numpy(np.concatenate(all_ids, axis=0))
+        ids = torch.tensor(all_ids)
         if self.normalize:
             embeddings = torch.nn.functional.normalize(embeddings, dim=1)
         return embeddings[ids]
