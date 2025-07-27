@@ -1,0 +1,26 @@
+# Example configuration for short_long_brainstorm generation
+model_config:
+  model_type: "vllm_instruct"
+  model_path: "meta-llama/Llama-3.1-8B-Instruct"
+  default_system_prompt: "You are a helpful assistant."
+  engine_kwargs:
+    tensor_parallel_size: 1
+    gpu_memory_utilization: 0.7
+    max_model_len: 4096
+    dtype: "bfloat16"
+  concurrency: 8
+  batch_size: 8
+  default_sampling_params:
+    temperature: 1.0
+    top_p: 0.9
+    max_tokens: 4096
+
+schema_config:
+  schema_file: "ose/schema/short_long_brainstorm.json"
+  extra_args: null
+  extra_args_p: null
+
+n_samples: 100
+output_path: "output/short_long_brainstorm_samples.jsonl"
+seed: 42
+overwrite_output: false 

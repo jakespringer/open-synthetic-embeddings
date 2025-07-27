@@ -1,0 +1,7 @@
+postprocessor_config:
+  postprocessor_type: "brainstorming"
+
+input_path: "output/short_long_brainstorm_samples.jsonl"
+output_path: "output/brainstorm_ideas_collected.json" 
+output_format: "json"
+overwrite_output: false

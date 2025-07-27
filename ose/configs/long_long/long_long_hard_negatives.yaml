@@ -1,0 +1,19 @@
+postprocessor_config:
+  postprocessor_type: "hard_negative_retrieval"
+  batch_size: 32
+  top_k: 10
+  embedder_query_template: "Instruct: {instruction}\nQuery: {query}"
+  embedder_document_template: "{positive}"
+  embedding_config:
+    model_type: "hf_embedding"
+    model_path: "intfloat/multilingual-e5-large-instruct" 
+    batch_size: 16
+    device: "cuda"
+    max_length: 512
+    concurrency: 1
+    pooling_strategy: "mean"
+
+input_path: "output/long_long_embeddings_data.jsonl"
+output_path: "final/long_long.jsonl"
+output_format: "jsonl"
+overwrite_output: false 

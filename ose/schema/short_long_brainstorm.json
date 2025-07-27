@@ -1,0 +1,5 @@
+{
+    "prompt_template": "Brainstorm a list of potentially useful text retrieval tasks.\nHere are a few examples for your reference:\n- Retrieve relevant documents for a short keyword web search query that asks for weather information. \n- Search for documents that answers a FAQ-style query on children's nutrition.\nPlease adhere to the following guidelines:\n- Specify what the query is, and what the desired documents are.\n- Each retrieval task should cover a wide range of queries, and should not be too specific.\nYour output must always be a python list of strings only, with about 20 elements, and each element corresponds to a distinct retrieval task in one sentence. Do not explain yourself or output anything else. Be creative!",
+    "args": {},
+    "args_p": {}
+} 

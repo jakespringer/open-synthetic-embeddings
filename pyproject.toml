@@ -1,0 +1,68 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "open-synthetic-data"
+version = "0.1.0"
+authors = [
+    {name = "OSE Team"},
+]
+description = "Open Synthetic Data Engine - A library for generating synthetic data using large language models"
+readme = "ose/README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers", 
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9", 
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "torch",
+    "numpy",
+    "tqdm", 
+    "transformers",
+    "ray[data]",
+    "jsonargparse",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov", 
+    "black",
+    "flake8",
+    "mypy",
+]
+docs = [
+    "sphinx",
+    "sphinx-rtd-theme",
+]
+
+[project.scripts]
+ose-generate = "ose.generate:cli"
+
+[tool.setuptools]
+packages = ["ose"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+ose = ["configs/*.yaml", "schema/*.json"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true 

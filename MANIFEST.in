@@ -1,0 +1,8 @@
+include ose/README.md
+include ose/configs/*.yaml
+include ose/schema/*.json
+include setup.py
+include pyproject.toml
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+recursive-exclude * .DS_Store 

@@ -1,0 +1,8 @@
+postprocessor_config:
+  postprocessor_type: "synthetic_embeddings_data"
+  data_type: "short_short"
+
+input_path: "output/short_short_samples.jsonl"
+output_path: "output/short_short_embeddings_data.jsonl" 
+output_format: "jsonl"
+overwrite_output: false 
