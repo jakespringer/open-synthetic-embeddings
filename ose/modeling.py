@@ -268,7 +268,7 @@ class RayEmbeddingModel:
         else:
             raise ValueError(f"Invalid pooling strategy: {self.pooling_strategy}")
         
-        return {"embeddings": embeddings.cpu().numpy()}
+        return {"embeddings": embeddings.cpu().numpy(), "id": batch['id']}
 
 
 class HFEmbeddingModel(EmbeddingModel):
@@ -283,7 +283,7 @@ class HFEmbeddingModel(EmbeddingModel):
 
     @torch.no_grad()
     def embed(self, texts: List[str]) -> torch.Tensor:
-        ds = ray.data.from_items([{'text': t} for t in texts])
+        ds = ray.data.from_items([{'text': t, 'id': i} for i, t in enumerate(texts)])
 
         embeddings_results = ds.map_batches(
             RayEmbeddingModel,
@@ -299,13 +299,16 @@ class HFEmbeddingModel(EmbeddingModel):
         )
 
         all_embeddings = []
+        all_ids = []
         for batch in embeddings_results.iter_batches(batch_format="numpy"):
             all_embeddings.append(batch['embeddings'])
+            all_ids.extend(batch['id'])
         
         embeddings = torch.from_numpy(np.concatenate(all_embeddings, axis=0))
+        ids = torch.from_numpy(np.concatenate(all_ids, axis=0))
         if self.normalize:
             embeddings = torch.nn.functional.normalize(embeddings, dim=1)
-        return embeddings
+        return embeddings[ids]
 
     def load_model(self):
         self.model = AutoModel.from_pretrained(self.model_path)
