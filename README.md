@@ -9,7 +9,7 @@ This repository provides tools for generating synthetic data for training text e
 ```bash
 git clone https://github.com/jakespringer/open-synthetic-embeddings.git
 cd open-synthetic-data
-pip install -r requirements.txt  # Install dependencies
+pip install -e ose
 ```
 
 ## Quick Start
