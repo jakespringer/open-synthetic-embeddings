@@ -3,6 +3,6 @@ postprocessor_config:
   data_type: "bitext"
 
 input_path: "output/bitext_samples.jsonl"
-output_path: "output/bitext_embeddings_data.jsonl" 
+output_path: "final/bitext.jsonl" 
 output_format: "jsonl"
 overwrite_output: false 

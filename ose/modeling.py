@@ -101,24 +101,29 @@ class VLLMModel(Model):
             ds = ray.data.from_items([{
                 'text': p,
                 'sampling_params': self.default_sampling_params,
-            } for p in prompts])
+                'id': i,
+            } for i, p in enumerate(prompts)])
         elif isinstance(prompts, List) and isinstance(prompts[0], Dict):
             entries = []
-            for p in prompts:
+            for i, p in enumerate(prompts):
                 entries.append({
                     'text': p['text'],
                     'sampling_params': _update_sampling_params(p),
+                    'id': i,
                 })
             ds = ray.data.from_items(entries)
         elif isinstance(prompts, ray.data.Dataset):
             ds = prompts.map(lambda row: {
                 'text': row['text'],
                 'sampling_params': _update_sampling_params(row),
+                'id': row['id'],
             })
         else:
             raise ValueError(f"Invalid prompts type: {type(prompts)}")
 
-        return [r['generated_text'] for r in self.processor(ds).take(len(prompts))]
+        results = list(self.processor(ds).take(len(prompts)))
+        results = sorted(results, key=lambda x: x['id'])
+        return [r['generated_text'] for r in results]
 
     @classmethod
     def from_model_config(cls, model_config: VLLMModelConfig):
