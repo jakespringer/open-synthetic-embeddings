@@ -1,6 +1,6 @@
 ![OpenSyntheticEmbeddings](title.png)
-
 **Paper:** [Understanding the Influence of Synthetic Data for Text Embedders](https://aclanthology.org/2025.findings-acl.1160.pdf)
+
 **Data:** [OpenSyntheticEmbeddings on Huggingface](https://huggingface.co/datasets/jspringer/open-synthetic-embeddings/viewer/synthetic_LLaMA-3.1-8B-Instruct_sts?views%5B%5D=synthetic_llama_31_8b_instruct_sts)
 
 This repository provides tools for generating synthetic data for training text embedding models, supporting multiple data types including short-short, short-long, long-long, long-short, bitext, and STS data.
